@@ -338,7 +338,7 @@ function PANEL:DoInfoClick(panel)
     btn2:SetWide((mp.szmp*0.32874493927126))
     btn2:SetButtonText(mp.lang.questionbtn)
     function btn2:DoClick()
-        gui.OpenURL("http://millenium.myarena.ru/buym.html")
+        gui.OpenURL("http://example.com/buym.html")
     end
 end
 function PANEL:Paint()
