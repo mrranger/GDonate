@@ -1,9 +1,9 @@
-mp.szmp = (ScrW() * ScrH())/1800
+gpay.szmp = (ScrW() * ScrH())/1800
 
 local w
 concommand.Add("autodonate", function( ply, cmd, args )
     if w and w:IsValid() then w:Remove() end
-   w = vgui.Create("mp.window")
+   w = vgui.Create("gpay.window")
 end)
 
 local pan
@@ -78,7 +78,7 @@ function bannedHandle()
 
     local loaded = false
 
-    local unban = "https://mp.ru.net/cloud/donate/unban.png"
+    local unban = "https://gpay.ru.net/cloud/donate/unban.png"
 
 	texture.Create(unban)
 
@@ -104,7 +104,7 @@ function bannedHandle()
 	local adm = LocalPlayer():GetNetVar("BanAdmin") or "PIDOR"
 
     pan2.Paint = function(m,w,h)
-        surface.SetDrawColor(mp.c.addcolor)
+        surface.SetDrawColor(gpay.c.addcolor)
         surface.DrawRect(0,0,w,h)
 
         if loaded then
@@ -113,7 +113,7 @@ function bannedHandle()
             surface.DrawTexturedRect(0, 0, 215, 215)
         end
         surface.SetTextColor(255, 255, 255,255)
-		surface.SetFont( "mp.font.30" )
+		surface.SetFont( "gpay.font.30" )
 
         local sw,sh = surface.GetTextSize("Вы забанены")
         surface.SetTextPos(  100+(w)/2-sw/2, 5 ) 
@@ -146,7 +146,7 @@ function bannedHandle()
 		surface.SetTextPos( (w-200)/2+(w/2-10)/2 - sw/2 - 30,h-sh-75 ) 
 		surface.DrawText( string.Comma(LocalPlayer():GetCurrency()).."₽" )
     end
-    local Refresh = vgui.Create("mp.button", pan2)
+    local Refresh = vgui.Create("gpay.button", pan2)
 	Refresh:SetPos(pan2:GetWide()-35,pan2:GetTall()-105)
 	Refresh:SetSize(30,30)
 	Refresh:SetButtonImage("data/mpdonate/ref.png")
@@ -154,7 +154,7 @@ function bannedHandle()
         netstream.Start("DonateBridge","refresh",false)
     end
 
-    local AddBalance = vgui.Create("mp.button", pan2)
+    local AddBalance = vgui.Create("gpay.button", pan2)
 	AddBalance:SetButtonText("ПОПОЛНИТЬ БАЛАНС")
 	AddBalance:SetPos(220,pan2:GetTall()-70)
 	AddBalance:SetSize(pan2:GetWide()-225,30)
@@ -171,7 +171,7 @@ function bannedHandle()
 
 	pan2:Center()
 
-    buyunban = vgui.Create("mp.button",pan2)
+    buyunban = vgui.Create("gpay.button",pan2)
     buyunban:Dock(BOTTOM)
     buyunban:SetTall(30)
     buyunban:DockMargin(220, 5, 5, 5)

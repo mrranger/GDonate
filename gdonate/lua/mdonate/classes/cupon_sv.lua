@@ -1,7 +1,7 @@
 local CUPON = FindMetaTable("MPCupons") or {}
 CUPON.__index = CUPON
 
-mp.CUPONS = {}
+gpay.CUPONS = {}
 
 local default = {
     cupon     = "null",
@@ -9,7 +9,7 @@ local default = {
     data      = 0, -- Data on use :D
     maxuses   = 0,
     used      = {}, -- steamids :D
-    callback  = function(args) mp.Msg("Used a null CUPON!") end, -- For events :D
+    callback  = function(args) gpay.Msg("Used a null CUPON!") end, -- For events :D
 }
 
 function CUPON:SetType(var)
@@ -58,45 +58,45 @@ function CUPON:Use(ply)
     elseif self.type == "item" then
         ply:AddItem(self:GetData() or "null")
     end
-    mp.mysql.ActivatorCupon(sid,self.cupon)
+    gpay.mysql.ActivatorCupon(sid,self.cupon)
     self.used[sid] = true
 end
 
 debug.getregistry()["MPCupons"] = CUPON -- Крч я не ебу как еще можно замутить, у меня тупо мозгов не хватает)
 
-function mp.GetCupon(class)
-    local fonunded = mp.CUPONS[class]
+function gpay.GetCupon(class)
+    local fonunded = gpay.CUPONS[class]
     if fonunded then
         return fonunded
     end
     return false
 end
 
-function mp.MakeCupon(cup_var)
+function gpay.MakeCupon(cup_var)
     if !cup_var then error("class not found") return end
     local cupon = table.Copy(default)
     setmetatable(cupon, CUPON)
-    mp.CUPONS[cup_var] = cupon
-    mp.CUPONS[cup_var].cupon = cup_var
+    gpay.CUPONS[cup_var] = cupon
+    gpay.CUPONS[cup_var].cupon = cup_var
     return cupon
 end
-mp.mysql.object:Query("CREATE TABLE IF NOT EXISTS `mpdonate_cupons`( `cupon` varchar(255) NOT NULL, `type` varchar(255) NOT NULL, `data` varchar(255) NOT NULL, `maxuses` int(255) NOT NULL, PRIMARY KEY (`cupon`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;") -- Основная таблица
-mp.mysql.object:Query("CREATE TABLE IF NOT EXISTS `mpdonate_cupons_used` ( `id` int(11) NOT NULL AUTO_INCREMENT, `cupon` varchar(255) NOT NULL, `sid` varchar(255) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;") -- Инвентарь
+gpay.mysql.object:Query("CREATE TABLE IF NOT EXISTS `mpdonate_cupons`( `cupon` varchar(255) NOT NULL, `type` varchar(255) NOT NULL, `data` varchar(255) NOT NULL, `maxuses` int(255) NOT NULL, PRIMARY KEY (`cupon`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;") -- Основная таблица
+gpay.mysql.object:Query("CREATE TABLE IF NOT EXISTS `mpdonate_cupons_used` ( `id` int(11) NOT NULL AUTO_INCREMENT, `cupon` varchar(255) NOT NULL, `sid` varchar(255) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;") -- Инвентарь
 timer.Simple(1,function()
-    mp.mysql.GetCupons(function(data)
+    gpay.mysql.GetCupons(function(data)
         if not data then return end
         for k,v in pairs(data) do
-            local cum = mp.MakeCupon(v["cupon"])
+            local cum = gpay.MakeCupon(v["cupon"])
             :SetType(v["type"])
             :SetData(v["data"])
             :SetMaxUses(v["maxuses"])
-            mp.DebugMsg("Returned cupon: "..v["cupon"])
-            mp.mysql.GetCuponsActivators(v["cupon"],function(data)
+            gpay.DebugMsg("Returned cupon: "..v["cupon"])
+            gpay.mysql.GetCuponsActivators(v["cupon"],function(data)
                 if not data then return end
                 for k,v in pairs(data) do
                     cum.used[v["sid"]] = true
                 end
-                mp.DebugMsg("Returned actvators cupon: "..v["cupon"])
+                gpay.DebugMsg("Returned actvators cupon: "..v["cupon"])
             end)
         end
     end)

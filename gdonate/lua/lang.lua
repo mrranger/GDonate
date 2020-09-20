@@ -1,35 +1,35 @@
-mp.lang = mp.lang or {}
-mp.lang.thanksforbuy = "Cпасибо за покупку, приятного пользования!"
-mp.lang.notenoughmoney = "У вас не хватает средств!"
-mp.lang.alreadythis = "У вас уже есть этот предмет!"
-mp.lang.itemnotfound = "Данного предмета сервер не опознал, попробуйте позже!"
-mp.lang.await = "Подождите..."
-mp.lang.cuponactivation = "Вы активировади купон"
-mp.lang.cuponnotrelevant = "Купон более не действителен"
-mp.lang.cuponnotfound = "Купон не найден"
-mp.lang.cuponalready = "Вы уже активировали данный купон"
+gpay.lang = gpay.lang or {}
+gpay.lang.thanksforbuy = "Cпасибо за покупку, приятного пользования!"
+gpay.lang.notenoughmoney = "У вас не хватает средств!"
+gpay.lang.alreadythis = "У вас уже есть этот предмет!"
+gpay.lang.itemnotfound = "Данного предмета сервер не опознал, попробуйте позже!"
+gpay.lang.await = "Подождите..."
+gpay.lang.cuponactivation = "Вы активировади купон"
+gpay.lang.cuponnotrelevant = "Купон более не действителен"
+gpay.lang.cuponnotfound = "Купон не найден"
+gpay.lang.cuponalready = "Вы уже активировали данный купон"
 
-mp.lang.buybutton = "КУПИТЬ"
-mp.lang.activatecupon = "Активировать купон"
-mp.lang.questionbtn = "Задать вопрос"
-mp.lang.addbalance = "ПОПОЛНИТЬ БАЛАНС"
-mp.lang.never = "НАВСЕГДА"
+gpay.lang.buybutton = "КУПИТЬ"
+gpay.lang.activatecupon = "Активировать купон"
+gpay.lang.questionbtn = "Задать вопрос"
+gpay.lang.addbalance = "ПОПОЛНИТЬ БАЛАНС"
+gpay.lang.never = "НАВСЕГДА"
 
-mp.lang.maintext = "Привет %s,\nКак дела?"
+gpay.lang.maintext = "Привет %s,\nКак дела?"
 
-mp.lang.logtext = "Лог действий:"
+gpay.lang.logtext = "Лог действий:"
 
-mp.lang.admingivedbalance = "%s(%s) выдал вам %s"
+gpay.lang.admingivedbalance = "%s(%s) выдал вам %s"
 
-mp.lang.admintakebalance = "%s(%s) забрал у вас %s"
+gpay.lang.admintakebalance = "%s(%s) забрал у вас %s"
 
-mp.lang.norights = "У вас нет прав!"
+gpay.lang.norights = "У вас нет прав!"
 
-mp.lang.weaponslist = "Оружия"
+gpay.lang.weaponslist = "Оружия"
 
-mp.lang.hatlist = "Шапки"
+gpay.lang.hatlist = "Шапки"
 
-mp.lang.pickup = "Взять"
-mp.lang.drop = "Снять"
+gpay.lang.pickup = "Взять"
+gpay.lang.drop = "Снять"
 
 -- Если шо тут редаем все надписи

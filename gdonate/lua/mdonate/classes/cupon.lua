@@ -1,7 +1,7 @@
 local CUPON = FindMetaTable("MPCupons") or {}
 CUPON.__index = CUPON
 
-mp.CUPONS = {}
+gpay.CUPONS = {}
 
 local default = {
     cupon     = "null",
@@ -9,7 +9,7 @@ local default = {
     data      = 0, -- Data on use :D
     maxuses   = 0,
     used      = {}, -- steamids :D
-    callback  = function(args) mp.Msg("Used a null CUPON!") end, -- For events :D
+    callback  = function(args) gpay.Msg("Used a null CUPON!") end, -- For events :D
 }
 
 function CUPON:SetType(var)
@@ -64,19 +64,19 @@ end
 
 debug.getregistry()["MPCupons"] = CUPON -- Крч я не ебу как еще можно замутить, у меня тупо мозгов не хватает)
 
-function mp.GetCupon(class)
-    local fonunded = mp.CUPONS[class]
+function gpay.GetCupon(class)
+    local fonunded = gpay.CUPONS[class]
     if fonunded then
         return fonunded
     end
     return false
 end
 
-function mp.MakeCupon(cup_var)
+function gpay.MakeCupon(cup_var)
     if !cup_var then error("class not found") return end
     local cupon = table.Copy(default)
     setmetatable(cupon, CUPON)
-    mp.CUPONS[cup_var] = cupon
-    mp.CUPONS[cup_var].cupon = cup_var
+    gpay.CUPONS[cup_var] = cupon
+    gpay.CUPONS[cup_var].cupon = cup_var
     return cupon
 end

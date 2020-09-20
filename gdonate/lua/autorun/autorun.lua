@@ -1,50 +1,50 @@
 mp = mp or {}
 PLAYER = FindMetaTable("Player")
-mp.c = mp.c or {}
+gpay.c = gpay.c or {}
 
 require 'nw'
 
 require 'pon'
 
-mp.Msg = function(...) MsgC(Color(200,162,200),"[MP Donate] ",Color(255,255,255),...,"\n") end
-mp.DebugMsg = function(...) if not mp.c.debug then return end MsgC(Color(255,50,50),"(DEBUG) ",Color(200,162,200),"[MP Donate] ",Color(255,255,255),...,"\n") end
-mp.isv = (SERVER) and include or function() end
-mp.icl = (SERVER) and AddCSLuaFile or include
-mp.ish = function(f) return mp.icl(f) or mp.isv(f) end
-mp.AddFile = function(f)
+gpay.Msg = function(...) MsgC(Color(200,162,200),"[MP Donate] ",Color(255,255,255),...,"\n") end
+gpay.DebugMsg = function(...) if not gpay.c.debug then return end MsgC(Color(255,50,50),"(DEBUG) ",Color(200,162,200),"[MP Donate] ",Color(255,255,255),...,"\n") end
+gpay.isv = (SERVER) and include or function() end
+gpay.icl = (SERVER) and AddCSLuaFile or include
+gpay.ish = function(f) return gpay.icl(f) or gpay.isv(f) end
+gpay.AddFile = function(f)
 	if string.find(f, '_sv.lua') then
-		return mp.isv(f)
+		return gpay.isv(f)
 	elseif string.find(f, '_cl.lua') then
-		return mp.icl(f)
+		return gpay.icl(f)
 	else
-		return mp.ish(f)
+		return gpay.ish(f)
 	end
 end
-mp.AddDir = function(dir, recursive)
+gpay.AddDir = function(dir, recursive)
 	local fol = dir .. '/'
 	local files, folders = file.Find(fol .. '*', 'LUA')
 	for _, f in ipairs(files) do
-		mp.AddFile(fol .. f)
+		gpay.AddFile(fol .. f)
 	end
 	if (recursive ~= false) then
 		for _, f in ipairs(folders) do
-			mp.AddDir(dir .. '/' .. f)
+			gpay.AddDir(dir .. '/' .. f)
 		end
 	end
 end
 
-mp.AddDir('utils',false)
-mp.AddFile('mdonate/ui/ns.lua')
-mp.AddFile('config_sv.lua')
-mp.AddFile('lang.lua')
-mp.AddDir('mdonate/providers',false) -- Провайдеры данных, крч я понял всю истерику по поводу MySQL, оставил только его...
-mp.AddDir('mdonate/classes',false)   -- Тут тупа классы
-mp.AddDir('mdonate/managment',false) -- чтоб можно было прикрутить любую админку
-mp.AddDir('mdonate/interpreter',false) -- обработчик
-mp.AddFile('mdonate/vars.lua')       -- Вары, удобно и быстро так сказать)
-mp.AddDir('mdonate',false)
-mp.AddFile('config.lua')
-mp.AddDir('mdonate/ui') -- Визуал, думаю самое парашное из всего что существует тут
-mp.AddDir('mdonate/saver')
-mp.AddDir('mdonate/hats')
+gpay.AddDir('utils',false)
+gpay.AddFile('mdonate/ui/ns.lua')
+gpay.AddFile('config_sv.lua')
+gpay.AddFile('lang.lua')
+gpay.AddDir('mdonate/providers',false) -- Провайдеры данных, крч я понял всю истерику по поводу MySQL, оставил только его...
+gpay.AddDir('mdonate/classes',false)   -- Тут тупа классы
+gpay.AddDir('mdonate/managment',false) -- чтоб можно было прикрутить любую админку
+gpay.AddDir('mdonate/interpreter',false) -- обработчик
+gpay.AddFile('mdonate/vars.lua')       -- Вары, удобно и быстро так сказать)
+gpay.AddDir('mdonate',false)
+gpay.AddFile('config.lua')
+gpay.AddDir('mdonate/ui') -- Визуал, думаю самое парашное из всего что существует тут
+gpay.AddDir('mdonate/saver')
+gpay.AddDir('mdonate/hats')
 -- Думаю тут и так все понятно

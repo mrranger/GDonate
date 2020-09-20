@@ -1,37 +1,37 @@
-mp.saver = mp.saver or {}
-mp.saver.weapons = {}
-mp.saver.boosters = {}
-mp.saver.hats = nil
+gpay.saver = gpay.saver or {}
+gpay.saver.weapons = {}
+gpay.saver.boosters = {}
+gpay.saver.hats = nil
 
-function mp.saver.SaveAndSend()
-    local prepare = {weapons=mp.saver.weapons,hat=mp.saver.hats,boosters=mp.saver.boosters,age="save"}
+function gpay.saver.SaveAndSend()
+    local prepare = {weapons=gpay.saver.weapons,hat=gpay.saver.hats,boosters=gpay.saver.boosters,age="save"}
     netstream.Start("DonateBridge","sync",prepare)
     file.Write("mpdonate/execution.dat",pon.encode(prepare))
 end
 
-function mp.saver.GiveMe(class,type)
+function gpay.saver.GiveMe(class,type)
     local prepare = {type=type,class=class,age="give"}
     netstream.Start("DonateBridge","sync",prepare)
 end
 
-function mp.saver.LoadSettings()
+function gpay.saver.LoadSettings()
     if file.Exists("mpdonate/execution.dat","DATA") then
         local data = pon.decode(file.Read("mpdonate/execution.dat"))
-        mp.saver.weapons = data.weapons
-        mp.saver.hats = data.hat
-        mp.saver.boosters = data.boosters
+        gpay.saver.weapons = data.weapons
+        gpay.saver.hats = data.hat
+        gpay.saver.boosters = data.boosters
 
-    	local prepare = {weapons=mp.saver.weapons,hat=mp.saver.hats,boosters=mp.saver.boosters,age="save"}
+    	local prepare = {weapons=gpay.saver.weapons,hat=gpay.saver.hats,boosters=gpay.saver.boosters,age="save"}
 		netstream.Start("DonateBridge","sync",prepare)
 		
-		for k,v in pairs(mp.saver.weapons) do
+		for k,v in pairs(gpay.saver.weapons) do
 			if v then
 				local prepare = {type="weapon",class=k,age="givef"}
 				netstream.Start("DonateBridge","sync",prepare)
 			end
 		end
 
-		for k,v in pairs(mp.saver.boosters) do
+		for k,v in pairs(gpay.saver.boosters) do
 			if v then
 				local prepare = {type="boost",class=k,age="givef"}
 				netstream.Start("DonateBridge","sync",prepare)
@@ -40,7 +40,7 @@ function mp.saver.LoadSettings()
     end
 end
 hook.Add("InitPostEntity","wcqweqwvqwe",function()
-	mp.saver.LoadSettings()
+	gpay.saver.LoadSettings()
 end)
 
 

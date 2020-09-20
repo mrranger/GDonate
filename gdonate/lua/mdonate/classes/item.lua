@@ -1,7 +1,7 @@
 local ITEM = FindMetaTable("MPItem") or {}
 ITEM.__index = ITEM
 
-mp.ITEMS = {}
+gpay.ITEMS = {}
 
 local default = {
     class     = "null",
@@ -16,7 +16,7 @@ local default = {
     discount  =  0,
     expires   =  0,
     hatdata   =  {pos=nil,ang=nil,sz=0,model=""}, -- For hats :D
-    callback  = function(args) mp.Msg("Used a null item!") end, -- For events :D
+    callback  = function(args) gpay.Msg("Used a null item!") end, -- For events :D
 }
 
 --SETUP DONATE
@@ -152,19 +152,19 @@ function ITEM:CallBack(args)
 end
 
 debug.getregistry()["MPItem"] = ITEM -- Крч я не ебу как еще можно замутить, у меня тупо мозгов не хватает)
-function mp.GetItem(class)
-    local fonunded = mp.ITEMS[class]
+function gpay.GetItem(class)
+    local fonunded = gpay.ITEMS[class]
     if fonunded then
         return fonunded
     end
     return false
 end
 
-function mp.Create(class)
+function gpay.Create(class)
     if !class then error("class not found") return end
     local item = table.Copy(default)
     setmetatable(item, ITEM)
-    mp.ITEMS[class] = item
-    mp.ITEMS[class].class = class
+    gpay.ITEMS[class] = item
+    gpay.ITEMS[class].class = class
     return item
 end

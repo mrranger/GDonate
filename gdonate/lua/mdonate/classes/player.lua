@@ -24,7 +24,7 @@ end
 
 function PLAYER:HasItem(class) -- Идите нахуй, у меня тип таблицы другой. Я не юзаю ваши гейские записи JSON в ячейку!
     for k,v in pairs(self:GetDonateInventory()) do
-        if v["class"] == class and mp.GetItem(class) and mp.GetItem(class):GetClass() ~= "event" then
+        if v["class"] == class and gpay.GetItem(class) and gpay.GetItem(class):GetClass() ~= "event" then
             return tonumber(k)
         end
     end

@@ -53,5 +53,5 @@ function PANEL:Paint(w,h)
 
 	render.SetStencilEnable(false)
 end
-vgui.Register('mp.avatar', PANEL)
+vgui.Register('gpay.avatar', PANEL)
 --The script is written by FOER © 2019

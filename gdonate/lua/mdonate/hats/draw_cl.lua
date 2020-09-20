@@ -2,7 +2,7 @@ local DONATE_DRAWHATS = function(ply)
     if ply:GetPos():DistToSqr(LocalPlayer():GetPos()) < 2000000 then
         local hat = ply:GetDonateHat()
         if not hat then return end
-        hat = mp.GetItem(hat)
+        hat = gpay.GetItem(hat)
         if not hat then return end
         hat = hat:GetHatData()
 

@@ -117,7 +117,7 @@ function TEXTURE:Download(url, onsuccess, onfailure)
 		end
 	else
 		self.Busy = true
-		http.Fetch(url--[[self.Proxy and string.format(mp.c.api_url.."resize.php?link=%s&width=%i&height=%i", url, self.Width, self.Height, self.Format) or url]], function(body, len, headers, code)
+		http.Fetch(url--[[self.Proxy and string.format(gpay.c.api_url.."resize.php?link=%s&width=%i&height=%i", url, self.Width, self.Height, self.Format) or url]], function(body, len, headers, code)
 			if (self.Cache) then
 				file.Write(self.File, body)
 			end

@@ -1,13 +1,13 @@
-mp.php = mp.php or {}
+gpay.php = gpay.php or {}
 
 ---------------
 -- TYPE REQUESTS:
 -- check - Cheking player balance (data: {sid=text,balance=int}) @RETURN int
 -- shortcut - Shortening links    (data: {longurl=text}) @RETURN string
 ---------------
-function mp.php.Requst(type,data,callback)
-    data.token = mp.c.token
-    http.Post(mp.c.api_url..type..".php",data,callback,function(err) print(err) end,mp.c.token) 
+function gpay.php.Requst(type,data,callback)
+    data.token = gpay.c.token
+    http.Post(gpay.c.api_url..type..".php",data,callback,function(err) print(err) end,gpay.c.token) 
 
 end
 -- Кароче, я не понимаю почему такая паника с сокетом, сделаю рефреш через PHP, Я НЕ БУДУ ДЕАТЬ ЭТО ЧЕРЕЗ МУСК, ЭТО ДОЛГО БУДЕТ, ТАК БЫСТРЕЕ!!!!!

@@ -1,7 +1,7 @@
 if CLIENT then
-    concommand.Add("sexpex",function(_, _, _, str)
+    concommand.Add("opensurl",function(_, _, _, str)
 
-        gui.OpenURL("http://milleniump.ru/linkzer/?"..str)
+        gui.OpenURL("http://example.com/linkzer/?"..str)
     
     end)
 
@@ -25,37 +25,37 @@ if CLIENT then
 
 
     local awaiting = 0
-    function mp.CheckAwait() -- мини антиспам
+    function gpay.CheckAwait() -- мини антиспам
         if awaiting < CurTime() then
-            awaiting = CurTime() + mp.c.await
+            awaiting = CurTime() + gpay.c.await
             return true
         end
         return false
     end
 
-    function mp.Call(type,args)
-        if mp.CheckAwait() and (type == "buy" or type == "refresha") then 
-            notification.AddLegacy( mp.lang.await, NOTIFY_GENERIC, 4 )
+    function gpay.Call(type,args)
+        if gpay.CheckAwait() and (type == "buy" or type == "refresha") then 
+            notification.AddLegacy( gpay.lang.await, NOTIFY_GENERIC, 4 )
             surface.PlaySound(bad and "npc/roller/mine/rmine_blip3.wav" or "garrysmod/save_load4.wav")
         return end
         netstream.Start("DonateBridge",type,args)
     end
 else
     
-    function mp.NotifySound(ply,sound)
+    function gpay.NotifySound(ply,sound)
         netstream.Start(ply,"DonateSound",sound)
     end
 
-    function mp.Notify(ply,bad,...)
+    function gpay.Notify(ply,bad,...)
         netstream.Start(ply,"DonateMessage",{...},bad)
     end
-    function mp.NotifyAll(bad,...)
+    function gpay.NotifyAll(bad,...)
         netstream.Start(nil,"DonateMessage",{...},bad)
     end
-    function mp.OpenURL(ply,url)
+    function gpay.OpenURL(ply,url)
         netstream.Start(ply,"DonateOpenURL",url)
     end
-    function mp.PlayerInventorySync(ply)
+    function gpay.PlayerInventorySync(ply)
         netstream.Start(ply,"DonateSync",ply:GetDonateInventory(),ply.donatetoken)
     end
 end

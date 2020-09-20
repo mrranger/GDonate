@@ -1,5 +1,5 @@
 local sexfeel_cds = {}
-mp.boosters = {
+gpay.boosters = {
     ["HP250"] = function(ply)
         ply:SetHealth(250)
     end,
@@ -10,7 +10,7 @@ mp.boosters = {
         ply:SetJumpPower(ply:GetJumpPower()*2)
     end,
     ["FEEL"] = function(ply)
-        if sexfeel_cds[ply:SteamID()] and CurTime() < sexfeel_cds[ply:SteamID()] then mp.Notify(ply,Color(255,255,255),"Шестое чувство можно активировать раз в час") return end
+        if sexfeel_cds[ply:SteamID()] and CurTime() < sexfeel_cds[ply:SteamID()] then gpay.Notify(ply,Color(255,255,255),"Шестое чувство можно активировать раз в час") return end
         ply:SendLua"ad_sexfeel()"
         sexfeel_cds[ply:SteamID()] = CurTime() + 3600
         ply.sexfeel = true
@@ -54,8 +54,8 @@ function groupup(ply)
 
 	ply:AdvancedSetUserGroup(povish[string.lower(ply:GetUserGroup())])
 	ply:SetNetVar("DonateUserGroupExpires",0)
-	mp.mysql.WriteVarServers(ply:SteamID64(),"mpdonate_groups","usergroup",sql.SQLStr(ply:GetUserGroup()))
-	mp.mysql.WriteVarServers(ply:SteamID64(),"mpdonate_groups","expires",0)
+	gpay.mysql.WriteVarServers(ply:SteamID64(),"mpdonate_groups","usergroup",sql.SQLStr(ply:GetUserGroup()))
+	gpay.mysql.WriteVarServers(ply:SteamID64(),"mpdonate_groups","expires",0)
 
 end
 
