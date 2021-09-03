@@ -1,5 +1,5 @@
 # GDonate
-Donation system for gmod by RANGERSTUDIO
+Donation system for gmod by Foer
 </br>
 Setup:
 </br>
